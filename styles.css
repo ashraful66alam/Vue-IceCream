@@ -204,12 +204,12 @@ div.scoop:first-of-type {
   
 }
 .pricing p{
-  font-size: large;
+  font-size: 2vw;
   font-weight: bold;
   margin: 1vw;
 }
 .pricing span{
-  font-size: large;
+  font-size: 2vw;
   font-weight: bold;
   color: white;
 }
