@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+    />
+    <link rel="shortcut icon" href="images/logo.svg" />
+    <title>Ice Cream Sundae</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- header start -->
+      <header>
+        <div class="container react" id="header">
+          <div>
+            <img class="logo" v-bind:src="logo" alt="Logo" />
+          </div>
+          <div class="textRight">
+            <img src="images/vue.svg" alt="React" class="reactLogo" /><strong
+              >Vue</strong
+            >
+          </div>
+        </div>
+      </header>
+      <!-- header end -->
+      <pricing :variants="variants"></pricing>
+
+      <!-- body start -->
+      <div class="mainBody react" id="body">
+        <div class="container react" id="iceCreamBuilder">
+
+          <!-- icecream start -->
+          <ice-cream :cart="cart"></ice-cream>
+          <!-- ice cream end -->
+
+          <!-- builder start -->
+          <div id="builder">
+            <div class="builder">
+              <h3>
+                Build your own Ice Cream Sundae
+                <span class="quantity" :style="cart.length==0 ? {color:'red'}: {color:'green'}">{{cart.length}}</span>
+
+              </h3>
+
+              <!-- items start -->
+              <div id="items">
+                <ul>
+                  <!-- item start -->
+                  <li class="item" id="item" :key="variant.id" v-for="variant in variants">
+                    <span>{{variant.name}}</span>
+                    <!-- <span class="quantity">2</span> -->
+                    <div class="right">
+                      <button type="button" class="plus rounded" v-on:click="addToCart(variant.id)">+</button>
+                      <button type="button" class="minus rounded" v-on:click="removeFromCart(variant.id)">-</button>
+                    </div>
+                  </li>
+                  <!-- item end -->
+                  
+                </ul>
+              </div>
+              <!-- items end -->
+
+              <!-- total price start -->
+              <div class="total react" id="total">
+                <div>Total Price</div>
+                <div>{{total}} Tk</div>
+              </div>
+              <!-- total price end -->
+              <button type="button"  class="order rounded" @click=toggleModal() >
+                Proceed
+              </button>
+            </div>
+
+            <!-- modal start -->
+            <order-form :cart="cart" :total="total" v-if="showModal" @toggle-order-form="toggleModal" @clear-cart="clearCart"></order-form>
+            <!-- modal end -->
+          </div>
+          <!-- builder end -->
+        </div>
+      </div>
+      <!-- body end -->
+
+      <!-- footer start -->
+      <footer>
+        <div class="container react" id="footer">
+          <div>
+            Copyright &copy;2020.
+          </div>
+          <div class="textRight">
+            Built with <span class="red">&hearts;</span> by
+            <a href="https://reactjs.org/docs/create-a-new-react-app.html"
+              target="_blank">
+              Create Vue App
+            </a>
+          </div>
+        </div>
+      </footer>
+      <!-- footer end -->
+    </div>
+    <script src="./main.js"></script>
+    <script src="./components/IceCream.js"></script>
+    <script src="./components/Pricing.js"></script>
+    <script src="./components/OrderForm.js"></script>
+    <script>
+      const mountedapp = app.mount("#app");
+    </script>
+  </body>
+</html>
